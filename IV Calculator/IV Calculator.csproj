@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E6F88C72-9BB1-4746-B857-AF706CE7AEA0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IV_Calculator</RootNamespace>
+    <AssemblyName>IV Calculator</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IVCalc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IVCalc.Designer.cs">
+      <DependentUpon>IVCalc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pokemon.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="IVCalc.resx">
+      <DependentUpon>IVCalc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pokemon Images\Abra.png" />
+    <Content Include="Pokemon Images\Aerodactyl.png" />
+    <Content Include="Pokemon Images\Alakazam.png" />
+    <Content Include="Pokemon Images\Arbok.png" />
+    <Content Include="Pokemon Images\Arcanine.png" />
+    <Content Include="Pokemon Images\Articuno.png" />
+    <Content Include="Pokemon Images\Beedrill.png" />
+    <Content Include="Pokemon Images\Bellsprout.png" />
+    <Content Include="Pokemon Images\Blastoise.png" />
+    <Content Include="Pokemon Images\Bulbasaur.png" />
+    <Content Include="Pokemon Images\Butterfree.png" />
+    <Content Include="Pokemon Images\Caterpie.png" />
+    <Content Include="Pokemon Images\Chansey.png" />
+    <Content Include="Pokemon Images\Charizard.png" />
+    <Content Include="Pokemon Images\Charmander.png" />
+    <Content Include="Pokemon Images\Charmeleon.png" />
+    <Content Include="Pokemon Images\Clefable.png" />
+    <Content Include="Pokemon Images\Clefairy.png" />
+    <Content Include="Pokemon Images\Cloyster.png" />
+    <Content Include="Pokemon Images\Cubone.png" />
+    <Content Include="Pokemon Images\Dewgong.png" />
+    <Content Include="Pokemon Images\Diglett.png" />
+    <Content Include="Pokemon Images\Ditto.png" />
+    <Content Include="Pokemon Images\Dodrio.png" />
+    <Content Include="Pokemon Images\Doduo.png" />
+    <Content Include="Pokemon Images\Dragonair.png" />
+    <Content Include="Pokemon Images\Dragonite.png" />
+    <Content Include="Pokemon Images\Dratini.png" />
+    <Content Include="Pokemon Images\Drowzee.png" />
+    <Content Include="Pokemon Images\Dugtrio.png" />
+    <Content Include="Pokemon Images\Eevee.png" />
+    <Content Include="Pokemon Images\Ekans.png" />
+    <Content Include="Pokemon Images\Electabuzz.png" />
+    <Content Include="Pokemon Images\Electrode.png" />
+    <Content Include="Pokemon Images\Exeggcute.png" />
+    <Content Include="Pokemon Images\Exeggutor.png" />
+    <Content Include="Pokemon Images\Farfetch%27d.png" />
+    <Content Include="Pokemon Images\Fearow.png" />
+    <Content Include="Pokemon Images\Flareon.png" />
+    <Content Include="Pokemon Images\Gastly.png" />
+    <Content Include="Pokemon Images\Gengar.png" />
+    <Content Include="Pokemon Images\Geodude.png" />
+    <Content Include="Pokemon Images\Gloom.png" />
+    <Content Include="Pokemon Images\Golbat.png" />
+    <Content Include="Pokemon Images\Goldeen.png" />
+    <Content Include="Pokemon Images\Golduck.png" />
+    <Content Include="Pokemon Images\Golem.png" />
+    <Content Include="Pokemon Images\Graveler.png" />
+    <Content Include="Pokemon Images\Grimer.png" />
+    <Content Include="Pokemon Images\Growlithe.png" />
+    <Content Include="Pokemon Images\Gyarados.png" />
+    <Content Include="Pokemon Images\Haunter.png" />
+    <Content Include="Pokemon Images\Hitmonchan.png" />
+    <Content Include="Pokemon Images\Hitmonlee.png" />
+    <Content Include="Pokemon Images\Horsea.png" />
+    <Content Include="Pokemon Images\Hypno.png" />
+    <Content Include="Pokemon Images\Ivysaur.png" />
+    <Content Include="Pokemon Images\Jigglypuff.png" />
+    <Content Include="Pokemon Images\Jolteon.png" />
+    <Content Include="Pokemon Images\Jynx.png" />
+    <Content Include="Pokemon Images\Kabuto.png" />
+    <Content Include="Pokemon Images\Kabutops.png" />
+    <Content Include="Pokemon Images\Kadabra.png" />
+    <Content Include="Pokemon Images\Kakuna.png" />
+    <Content Include="Pokemon Images\Kangaskhan.png" />
+    <Content Include="Pokemon Images\Kingler.png" />
+    <Content Include="Pokemon Images\Koffing.png" />
+    <Content Include="Pokemon Images\Krabby.png" />
+    <Content Include="Pokemon Images\Lapras.png" />
+    <Content Include="Pokemon Images\Lickitung.png" />
+    <Content Include="Pokemon Images\Machamp.png" />
+    <Content Include="Pokemon Images\Machoke.png" />
+    <Content Include="Pokemon Images\Machop.png" />
+    <Content Include="Pokemon Images\Magikarp.png" />
+    <Content Include="Pokemon Images\Magmar.png" />
+    <Content Include="Pokemon Images\Magnemite.png" />
+    <Content Include="Pokemon Images\Magneton.png" />
+    <Content Include="Pokemon Images\Mankey.png" />
+    <Content Include="Pokemon Images\Marowak.png" />
+    <Content Include="Pokemon Images\Meowth.png" />
+    <Content Include="Pokemon Images\Metapod.png" />
+    <Content Include="Pokemon Images\Mew.png" />
+    <Content Include="Pokemon Images\Mewtwo.png" />
+    <Content Include="Pokemon Images\Moltres.png" />
+    <Content Include="Pokemon Images\Mr.Mime.png" />
+    <Content Include="Pokemon Images\Muk.png" />
+    <Content Include="Pokemon Images\Nidoking.png" />
+    <Content Include="Pokemon Images\Nidoqueen.png" />
+    <Content Include="Pokemon Images\NidoranF.png" />
+    <Content Include="Pokemon Images\NidoranM.png" />
+    <Content Include="Pokemon Images\Nidorina.png" />
+    <Content Include="Pokemon Images\Nidorino.png" />
+    <Content Include="Pokemon Images\Ninetales.png" />
+    <Content Include="Pokemon Images\Oddish.png" />
+    <Content Include="Pokemon Images\Omanyte.png" />
+    <Content Include="Pokemon Images\Omastar.png" />
+    <Content Include="Pokemon Images\Onix.png" />
+    <Content Include="Pokemon Images\Paras.png" />
+    <Content Include="Pokemon Images\Parasect.png" />
+    <Content Include="Pokemon Images\Persian.png" />
+    <Content Include="Pokemon Images\Pidgeot.png" />
+    <Content Include="Pokemon Images\Pidgeotto.png" />
+    <Content Include="Pokemon Images\Pidgey.png" />
+    <Content Include="Pokemon Images\Pikachu.png" />
+    <Content Include="Pokemon Images\Pinsir.png" />
+    <Content Include="Pokemon Images\Poliwag.png" />
+    <Content Include="Pokemon Images\Poliwhirl.png" />
+    <Content Include="Pokemon Images\Poliwrath.png" />
+    <Content Include="Pokemon Images\Ponyta.png" />
+    <Content Include="Pokemon Images\Porygon.png" />
+    <Content Include="Pokemon Images\Primeape.png" />
+    <Content Include="Pokemon Images\Psyduck.png" />
+    <Content Include="Pokemon Images\Question.png" />
+    <Content Include="Pokemon Images\Raichu.png" />
+    <Content Include="Pokemon Images\Rapidash.png" />
+    <Content Include="Pokemon Images\Raticate.png" />
+    <Content Include="Pokemon Images\Rattata.png" />
+    <Content Include="Pokemon Images\Rhydon.png" />
+    <Content Include="Pokemon Images\Rhyhorn.png" />
+    <Content Include="Pokemon Images\Sandshrew.png" />
+    <Content Include="Pokemon Images\Sandslash.png" />
+    <Content Include="Pokemon Images\Scyther.png" />
+    <Content Include="Pokemon Images\Seadra.png" />
+    <Content Include="Pokemon Images\Seaking.png" />
+    <Content Include="Pokemon Images\Seel.png" />
+    <Content Include="Pokemon Images\Shellder.png" />
+    <Content Include="Pokemon Images\Slowbro.png" />
+    <Content Include="Pokemon Images\Slowpoke.png" />
+    <Content Include="Pokemon Images\Snorlax.png" />
+    <Content Include="Pokemon Images\Spearow.png" />
+    <Content Include="Pokemon Images\Squirtle.png" />
+    <Content Include="Pokemon Images\Starmie.png" />
+    <Content Include="Pokemon Images\Staryu.png" />
+    <Content Include="Pokemon Images\Tangela.png" />
+    <Content Include="Pokemon Images\Tauros.png" />
+    <Content Include="Pokemon Images\Tentacool.png" />
+    <Content Include="Pokemon Images\Tentacruel.png" />
+    <Content Include="Pokemon Images\Vaporeon.png" />
+    <Content Include="Pokemon Images\Venomoth.png" />
+    <Content Include="Pokemon Images\Venonat.png" />
+    <Content Include="Pokemon Images\Venusaur.png" />
+    <Content Include="Pokemon Images\Victreebel.png" />
+    <Content Include="Pokemon Images\Vileplume.png" />
+    <Content Include="Pokemon Images\Voltorb.png" />
+    <Content Include="Pokemon Images\Vulpix.png" />
+    <Content Include="Pokemon Images\Wartortle.png" />
+    <Content Include="Pokemon Images\Weedle.png" />
+    <Content Include="Pokemon Images\Weepinbell.png" />
+    <Content Include="Pokemon Images\Weezing.png" />
+    <Content Include="Pokemon Images\Wigglytuff.png" />
+    <Content Include="Pokemon Images\Zapdos.png" />
+    <Content Include="Pokemon Images\Zubat.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
