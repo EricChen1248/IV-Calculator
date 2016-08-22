@@ -82,6 +82,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="close.png" />
     <Content Include="Pokemon Images\Abra.png" />
     <Content Include="Pokemon Images\Aerodactyl.png" />
     <Content Include="Pokemon Images\Alakazam.png" />

@@ -66,8 +66,10 @@ namespace IV_Calculator
 			this.MaxStat = new System.Windows.Forms.Label();
 			this.AvgStat = new System.Windows.Forms.Label();
 			this.MinStat = new System.Windows.Forms.Label();
+			this.closeButton = new System.Windows.Forms.PictureBox();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.closeButton)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -639,6 +641,18 @@ namespace IV_Calculator
 			this.MinStat.Size = new System.Drawing.Size(0, 18);
 			this.MinStat.TabIndex = 29;
 			// 
+			// closeButton
+			// 
+			this.closeButton.BackColor = System.Drawing.Color.LightSkyBlue;
+			this.closeButton.Image = global::IV_Calculator.Properties.Resources.close;
+			this.closeButton.Location = new System.Drawing.Point(298, 3);
+			this.closeButton.Name = "closeButton";
+			this.closeButton.Size = new System.Drawing.Size(26, 23);
+			this.closeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.closeButton.TabIndex = 30;
+			this.closeButton.TabStop = false;
+			this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+			// 
 			// IVCalc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -648,6 +662,7 @@ namespace IV_Calculator
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(328, 666);
 			this.ControlBox = false;
+			this.Controls.Add(this.closeButton);
 			this.Controls.Add(this.MinStat);
 			this.Controls.Add(this.AvgStat);
 			this.Controls.Add(this.MaxStat);
@@ -673,9 +688,11 @@ namespace IV_Calculator
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "IVCalc";
+			this.Load += new System.EventHandler(this.IVCalc_Load);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.closeButton)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -718,6 +735,7 @@ namespace IV_Calculator
 		private Label MaxStat;
 		private Label AvgStat;
 		private Label MinStat;
+		private PictureBox closeButton;
 	}
 }
 

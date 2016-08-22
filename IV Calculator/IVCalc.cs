@@ -591,6 +591,14 @@ namespace IV_Calculator
 				avg += atk + def + sta;
 			}
 		}
-		
+
+		private void IVCalc_Load(object sender, EventArgs e)
+		{
+		}
+
+		private void closeButton_Click(object sender, EventArgs e)
+		{
+			Close();
+		}
 	}
 }
