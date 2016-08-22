@@ -82,6 +82,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Background.png" />
     <Content Include="close.png" />
     <Content Include="Pokemon Images\Abra.png" />
     <Content Include="Pokemon Images\Aerodactyl.png" />

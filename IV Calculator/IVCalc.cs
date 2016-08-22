@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static IV_Calculator.Properties.Resources;
 
@@ -519,25 +522,36 @@ namespace IV_Calculator
 				Stardust = int.Parse(StardustCombo.Text)
 			};
 			newPoke.Calculate();
-			ShowStats(newPoke);
-			StatCount.Text = newPoke.Levels.Count.ToString() + " Entries";
+			
+			Task.Factory.StartNew(() => ShowStats(newPoke), CancellationToken.None, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default);
+			StatCount.Text = newPoke.Levels.Count + " Entries";
 		}
 
 		private void ShowStats(Pokemon pokemon)
 		{
+			PossibleStatsPanel.Controls.Clear();
 			double max = 0, min = 100, avg = 0;
 			foreach (var stats in pokemon.Levels.Select(levels => new StatSet(levels.Level, levels.Siv, levels.Aiv, levels.Div,
 				(PossibleStatsPanel.Controls.Count - 5) / 5 * 27 + 27, ref max, ref min, ref avg)))
 			{
-				PossibleStatsPanel .Controls.Add(stats.Perfection);
-				PossibleStatsPanel.Controls.Add(stats.Def);
-				PossibleStatsPanel.Controls.Add(stats.Atk);
-				PossibleStatsPanel.Controls.Add(stats.Sta);
-				PossibleStatsPanel.Controls.Add(stats.Lvl);
+				MethodInvoker updateStats = delegate
+				{
+					PossibleStatsPanel.Controls.Add(stats.Perfection);
+					PossibleStatsPanel.Controls.Add(stats.Def);
+					PossibleStatsPanel.Controls.Add(stats.Atk);
+					PossibleStatsPanel.Controls.Add(stats.Sta);
+					PossibleStatsPanel.Controls.Add(stats.Lvl);
+				};
+				Invoke(updateStats);
+
 			}
-			MaxStat .Text = $"{max/45:P0}";
+			MethodInvoker uiUpdate = delegate
+			{
+				MaxStat .Text = $"{max/45:P0}";
 			MinStat.Text = $"{min / 45:P0}";
 			AvgStat.Text = $"{avg / pokemon.Levels.Count  / 45:P0}";
+			};
+			Invoke(uiUpdate);
 		}
 
 		private struct StatSet
@@ -591,14 +605,16 @@ namespace IV_Calculator
 				avg += atk + def + sta;
 			}
 		}
-
-		private void IVCalc_Load(object sender, EventArgs e)
-		{
-		}
+		
 
 		private void closeButton_Click(object sender, EventArgs e)
 		{
-			Close();
+			Application.ExitThread();
+			Environment.Exit(0);
+		}
+
+		private void IVCalc_Load(object sender, EventArgs e)
+		{
 		}
 	}
 }
