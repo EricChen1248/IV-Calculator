@@ -68,6 +68,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="bin\Debug\IV Calculator.exe.config" />
+    <None Include="bin\Debug\IV Calculator.vshost.exe.config" />
+    <None Include="bin\Debug\IV Calculator.vshost.exe.manifest" />
+    <None Include="bin\Release\IV Calculator.exe.config" />
+    <None Include="bin\Release\IV Calculator.vshost.exe.config" />
+    <None Include="bin\Release\IV Calculator.vshost.exe.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -83,6 +89,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Background.png" />
+    <Content Include="bin\Debug\IV Calculator.exe" />
+    <Content Include="bin\Debug\IV Calculator.pdb" />
+    <Content Include="bin\Debug\IV Calculator.vshost.exe" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.HostingProcess.Utilities.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.HostingProcess.Utilities.Sync.dll" />
+    <Content Include="bin\Release\IV Calculator.exe" />
+    <Content Include="bin\Release\IV Calculator.pdb" />
+    <Content Include="bin\Release\IV Calculator.vshost.exe" />
+    <Content Include="bin\Release\Microsoft.VisualStudio.HostingProcess.Utilities.dll" />
+    <Content Include="bin\Release\Microsoft.VisualStudio.HostingProcess.Utilities.Sync.dll" />
     <Content Include="close.png" />
     <Content Include="Pokemon Images\Abra.png" />
     <Content Include="Pokemon Images\Aerodactyl.png" />

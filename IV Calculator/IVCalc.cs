@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -18,7 +17,6 @@ namespace IV_Calculator
 		private bool drag;
 		private int mouseX;
 		private int mouseY;
-
 		public IVCalc()
 		{
 			PokemonList = new List<Pokemon>();
@@ -30,10 +28,7 @@ namespace IV_Calculator
 		private void HealthCombo_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if (e.KeyChar == (char)Keys.Tab)
-			{
-				e.KeyChar = (char)Keys.Enter;
-				e.Handled = false;
-			}
+				SendKeys.Send("{ENTER}");
 
 			if (char.IsControl(e.KeyChar)) return;
 			switch (e.KeyChar )
@@ -484,10 +479,7 @@ namespace IV_Calculator
 		private void CPCombo_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if (e.KeyChar == (char) Keys.Tab)
-			{
-				e.KeyChar = (char) Keys.Enter;
-				e.Handled = false;
-			}
+				SendKeys.Send("{ENTER}");
 			if (char.IsControl(e.KeyChar)) return;
 			switch (e.KeyChar)
 			{
@@ -514,7 +506,11 @@ namespace IV_Calculator
 			SendKeys.Send("{TAB}");
 			if (PokemonCombo.SelectedItem == null && CPCombo.SelectedItem == null && HealthCombo.SelectedItem == null &&
 			    StardustCombo.SelectedItem == null) return;
-			var newPoke = new Pokemon()
+			PossibleStatsPanel.Controls.Clear();
+			MaxStat.Text = "??";
+			MinStat.Text = "??";
+			AvgStat.Text = "??";
+			var newPoke = new Pokemon()	   
 			{
 				CP = int.Parse(CPCombo.Text),
 				Health = int.Parse(HealthCombo.Text),
@@ -522,34 +518,32 @@ namespace IV_Calculator
 				Stardust = int.Parse(StardustCombo.Text)
 			};
 			newPoke.Calculate();
-			
-			Task.Factory.StartNew(() => ShowStats(newPoke), CancellationToken.None, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default);
+			//Task.Factory.StartNew(() => ShowStats(newPoke), CancellationToken.None , TaskCreationOptions.DenyChildAttach, TaskScheduler.Default);
+			ShowStats(newPoke);
 			StatCount.Text = newPoke.Levels.Count + " Entries";
 		}
 
 		private void ShowStats(Pokemon pokemon)
 		{
-			PossibleStatsPanel.Controls.Clear();
 			double max = 0, min = 100, avg = 0;
-			foreach (var stats in pokemon.Levels.Select(levels => new StatSet(levels.Level, levels.Siv, levels.Aiv, levels.Div,
-				(PossibleStatsPanel.Controls.Count - 5) / 5 * 27 + 27, ref max, ref min, ref avg)))
+			MethodInvoker updateStats = delegate
 			{
-				MethodInvoker updateStats = delegate
+				foreach (var stats in pokemon.Levels.Select(levels => new StatSet(levels.Level, levels.Siv, levels.Aiv, levels.Div,
+					(PossibleStatsPanel.Controls.Count - 5) / 5 * 27 + 27, ref max, ref min, ref avg)))
 				{
 					PossibleStatsPanel.Controls.Add(stats.Perfection);
 					PossibleStatsPanel.Controls.Add(stats.Def);
 					PossibleStatsPanel.Controls.Add(stats.Atk);
 					PossibleStatsPanel.Controls.Add(stats.Sta);
 					PossibleStatsPanel.Controls.Add(stats.Lvl);
-				};
-				Invoke(updateStats);
-
-			}
+				}
+			};
+			Invoke(updateStats);
 			MethodInvoker uiUpdate = delegate
 			{
 				MaxStat .Text = $"{max/45:P0}";
-			MinStat.Text = $"{min / 45:P0}";
-			AvgStat.Text = $"{avg / pokemon.Levels.Count  / 45:P0}";
+				MinStat.Text = $"{min / 45:P0}";
+				AvgStat.Text = $"{avg / pokemon.Levels.Count  / 45:P0}";
 			};
 			Invoke(uiUpdate);
 		}
@@ -615,6 +609,18 @@ namespace IV_Calculator
 
 		private void IVCalc_Load(object sender, EventArgs e)
 		{
+		}
+
+		private void PokemonCombo_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)Keys.Tab)
+				SendKeys.Send("{ENTER}");
+		}
+
+		private void StardustCombo_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)Keys.Tab)
+				SendKeys.Send("{ENTER}");
 		}
 	}
 }

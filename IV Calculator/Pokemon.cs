@@ -338,24 +338,26 @@ namespace IV_Calculator
 
 			for (var i = MinLevel(); i <= MaxLevel(); i += 0.5)
 			{
-				for (var j = 0; j < 16; j++)
-				{
-					if (Health != (int) (CPM(i) * (BaseStam() + j))) continue;
-					for (var k = 0; k < 16; k++)
-					{
-						for (var l = 0; l < 16; l++)
-						{
-							if (CP == (int)((BaseAtk() + k) *Math.Pow((BaseDef() + l),0.5) * Math.Pow((BaseStam() + j), 0.5) *  Math.Pow(CPM(i),2) / 10))
-							{
-								Levels.Add(new Levels()
-								{
-									Level = i,Aiv = k, Div = l, Siv = j
-								}						
-								);
-							}
-						}
-					}
-				}
+			    for (var j = 0; j < 16; j++)
+			    {
+			        if (Health != Math.Max((int) (CPM(i) * (BaseStam() + j)), 10)) continue;
+			        for (var k = 0; k < 16; k++)
+			            for (var l = 0; l < 16; l++)
+			                if (CP ==
+			                    Math.Max(
+			                        (int)
+			                        ((BaseAtk() + k) * Math.Pow((BaseDef() + l), 0.5) * Math.Pow((BaseStam() + j), 0.5) *
+			                         Math.Pow(CPM(i), 2) / 10), 10))
+
+			                    Levels.Add(new Levels()
+			                        {
+			                            Level = i,
+			                            Aiv = k,
+			                            Div = l,
+			                            Siv = j
+			                        }
+			                    );
+			    }
 			}
 		}
 
