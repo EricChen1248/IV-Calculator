@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Net;
+using System.Security.AccessControl;
+
 namespace IV_Calculator
 {
 	internal class Pokemon
@@ -13,6 +18,9 @@ namespace IV_Calculator
 		public string GivenName { get; set; }
 		public decimal Weight { get;  set; }
 		public decimal Height { get; set; }
+		public decimal CPRange { get; set; }
+		public BestStats BestStat { get; set; }
+		public int BestIV { get; set; }
 		public FastMoves FastAttack { get; set; }
 		public SpecialMoves SpecialAttack { get; set; }
 		public List<Levels> Levels { get; set; }
@@ -332,11 +340,11 @@ namespace IV_Calculator
 			}
 		}
 
-		public void Calculate()
+		public void Calculate(bool isNew)
 		{
 			Name = GetPokemon();
-
-			for (var i = MinLevel(); i <= MaxLevel(); i += 0.5)
+		    var levelIncrease = isNew ? 1 : 0.5;
+			for (var i = MinLevel(); i <= MaxLevel(); i += levelIncrease)
 			{
 			    for (var j = 0; j < 16; j++)
 			    {
@@ -348,19 +356,70 @@ namespace IV_Calculator
 			                        (int)
 			                        ((BaseAtk() + k) * Math.Pow((BaseDef() + l), 0.5) * Math.Pow((BaseStam() + j), 0.5) *
 			                         Math.Pow(CPM(i), 2) / 10), 10))
-
+			                { switch (BestStat)
+			                    {
+			                        case BestStats.None:
+			                            break;
+			                        case BestStats.Attack:
+			                            if (!IsInRange(k) || l >= k || j >= k)
+			                                continue;
+                                        break;
+			                        case BestStats.Defence:
+                                        if (!IsInRange(l) || k >= j || l >= j)
+                                            continue;
+                                        break;
+			                        case BestStats.Stamina:
+                                        if (!IsInRange(j) || k >= l || j >= l)
+                                            continue;
+                                        break;
+			                        case BestStats.AttackDefence:
+                                        if (!IsInRange(k) || l != k || j >= k)
+                                            continue;
+                                        break;
+			                        case BestStats.AttackStamina:
+                                        if (!IsInRange(k) || l >= k || j != k)
+                                            continue;
+                                        break;
+			                        case BestStats.DefenceStamina:
+                                        if (!IsInRange(l) || k >= l || l != j)
+                                            continue;
+                                        break;
+			                        case BestStats.AttackDefenceStamina:
+                                        if (!IsInRange(k) || l != k || j != k)
+                                            continue;
+                                        break;
+			                        default:
+			                            throw new ArgumentOutOfRangeException();
+			                    }
 			                    Levels.Add(new Levels()
 			                        {
 			                            Level = i,
 			                            Aiv = k,
 			                            Div = l,
 			                            Siv = j
-			                        }
-			                    );
+                                    });
+                            }
+			                   
 			    }
 			}
 		}
 
+	    private bool IsInRange(int k)
+	    {
+	        switch (BestIV)
+	        {
+	            case 1:
+	                return k == 15;
+	            case 2:
+	                return (k < 15 && k > 12);
+	            case 3:
+	                return (k < 13 && k > 7);
+	            case 4:
+	                return (k < 8);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+	    }
 		private double MinLevel()
 		{
 			switch (Stardust)
@@ -1478,7 +1537,28 @@ namespace IV_Calculator
 					return 0;
 			}
 		}
+
+        //Resharper Bug
+	    [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
+	    public void BestStatChck(bool atk, bool def, bool sta)
+	    {
+	        if (atk && !def && !sta)
+	            BestStat = BestStats.Attack;
+            else if (atk && def && !sta)
+	            BestStat = BestStats.AttackDefence;
+            else if (atk && !def && sta)
+	            BestStat = BestStats.AttackStamina;
+            else if (atk && def && sta)
+	            BestStat = BestStats.AttackDefenceStamina;
+            else if (!atk && def && !sta)
+                BestStat = BestStats.Defence;
+            else if (!atk && def && sta)
+	            BestStat = BestStats.DefenceStamina;
+            else if (!atk && !def && sta)
+	            BestStat = BestStats.Stamina;
+	    }
 	}
+
 }
 
 internal struct Levels
@@ -1784,3 +1864,14 @@ internal enum SpecialMoves
 	Struggle
 }
 
+internal enum BestStats
+{
+	None,
+	Attack,
+	Defence,
+	Stamina,
+	AttackDefence,
+	AttackStamina,
+	DefenceStamina,
+	AttackDefenceStamina
+}
